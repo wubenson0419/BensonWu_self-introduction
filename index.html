@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>吳秉乾的小小網站</title>
+    <meta name="description" content="吳秉乾的個人網站，展示個人作品、攝影集和聯絡方式。">
+    <meta property="og:title" content="吳秉乾的小小網站">
+    <meta property="og:description" content="一個從零開始，使用純 HTML、CSS 和 JavaScript 打造的個人化、響應式多頁面攝影作品集網站。">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="吳秉乾的小小網站">
+    <meta name="twitter:description" content="一個從零開始，使用純 HTML、CSS 和 JavaScript 打造的個人化、響應式多頁面攝影作品集網站。">
+    <!-- 這下面兩行的網址需要再修改成發布後的網址 -->
+    <meta property="og:image" content="images/headportrait/myicon.png">
+    <meta property="og:url" content="https://yourwebsite.com/index.html">
+    <!-- 以此為分界提醒(上面兩行) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="吳秉乾的小小網站">
+    <meta name="twitter:description" content="一個從零開始，使用純 HTML、CSS 和 JavaScript 打造的個人化、響應式多頁面攝影作品集網站。">
+    <!-- 這下面兩行的網址需要再修改成發布後的網址 -->
+    <meta name="twitter:image" content="images/headportrait/myicon.png">
+    <meta name="twitter:url" content="https://yourwebsite.com/index.html">
+    <!-- 以此為分界提醒(上面兩行) -->
+    <meta property="og:locale" content="zh_TW">
+    <link rel="icon" type="image/png" href="images/headportrait/myicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=link" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=link" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=send" />
+    <meta name="theme-color" content="#3C3C3C">
+    
+    <!-- 既有內容 -->
+    <!-- Open Graph 基本設定（FB、LINE、IG、Discord等都會用） -->
+    <!-- <meta property="og:title" content="KodakProimage100-CanonEOS100QD | 吳秉乾的小小網站">
+    <meta property="og:description" content="底片攝影、相機介紹、生活紀錄，盡在吳秉乾的小小網站。">
+    <meta property="og:image" content="https://你的網址/images/CanonEOS100QD/KodakProimage100/kodakproimage100__A01.JPG">
+    <meta property="og:url" content="https://你的網址/canoneos100qd-KodakProimage100.html">
+    <meta property="og:type" content="website"> -->
+
+    <!-- Twitter Card（X） -->
+    <!-- <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KodakProimage100-CanonEOS100QD | 吳秉乾的小小網站">
+    <meta name="twitter:description" content="底片攝影、相機介紹、生活紀錄，盡在吳秉乾的小小網站。">
+    <meta name="twitter:image" content="https://你的網址/images/CanonEOS100QD/KodakProimage100/kodakproimage100__A01.JPG"> -->
+
+    <!-- 一般搜尋引擎描述 -->
+    <!-- <meta name="description" content="底片攝影、相機介紹、生活紀錄，盡在吳秉乾的小小網站。"> -->
+</head>
+<body>
+    <!-- 未改進前目錄 -->
+    <!-- <button id="menu-toggle" aria-label="開啟/關閉菜單">
+        <i id="menu-icon" class="fa-solid fa-list-ul"></i>
+    </button>
+    <nav id="main-nav">
+        <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li class="menu-item-has-children"> <a href="#">攝影合集 <i class="fa-solid fa-chevron-down dropdown-icon"></i></a>
+                <ul class="submenu">
+                    <li><a href="highlight.html">精選照片</a></li>
+                    <li class="menu-item-has-children">
+                        <a href="">CanonEOS100QD <i class="fa-solid fa-chevron-down dropdown-icon"></i></a>
+                        <ul class="submenu">
+                            <li><a href="canoneos100qd.html">此相機所有照片</a></li>
+                            <li><a href="canoneos100qd-KodakProimage100.html">Kodak Proimage100</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="canon7d2.html">CanonEOS 7DMarkⅡ</a></li>
+                </ul>
+            </li>
+            <li><a href="callme.html">聯絡我</a></li>
+        </ul>
+    </nav>
+    <div id="menu-overlay"></div> -->
+    <!-- 導覽列佔位符 -->
+    <div id="nav-placeholder"></div>
+
+    <div class="content-wrapper"> <!-- [修改] 內容包裝器 -->
+        <header>
+            <h1>～吳秉乾的自我介紹～</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="profile-card">
+                <img src="images/headportrait/S_11296777.jpg" alt="吳秉乾的頭像" loading="lazy">
+                <div class="profile-info">
+                    <p><strong>綽號：</strong>吳秉乾</p>
+                    <p><strong>英文：</strong>Benson Wu</p>
+                    <p><strong>生日：</strong>2009/04/19</p>
+                    <p><strong>興趣：</strong>攝影、拆解東西</p>
+                    <p><strong>學校：</strong>國立臺中科技大學</p>
+                    <p><strong>科系：</strong>資訊工程科(五專)</p>
+                    <p><strong>在學狀態：</strong>就讀中(暑假)</p>
+                </div>
+            </section>
+
+            <section class="social-links-container">
+                <h2 class="section-title">社交平台連結</h2>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/bhwu0419.studio" target="_blank" class="instagram"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="https://www.threads.com/@bhwu0419.studio" target="_blank" class="threads"><i class="fa-brands fa-threads"></i> Threads</a>
+                    <a href="https://line.me/ti/p/gwNsHrbZ9Y" target="_blank" class="line"><i class="fa-brands fa-line"></i> Line</a>
+                    <a href="https://www.youtube.com/@wu.benson0419" target="_blank" class="youtube"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                    <a href="https://github.com/wubenson0419" target="_blank" class="github"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </section>
+        </main>
+    </div> <!-- [修改] 內容包裝器結束 -->
+
+    <div class="content-wrapper"> <!-- [修改] 內容包裝器 -->
+        <!-- <header>
+            <h1>～精選作品～</h1>
+        </header> -->
+
+        <main class="page-content-index">
+            <h2 class="page-title">精選照片</h2>
+            <div class="gallery-grid" id="gallery-container"></div>
+            <script>
+            // 自動載入 highlight.html 的 6 張圖片到首頁
+            fetch('highlight.html')
+              .then(res => res.text())
+              .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const imgs = temp.querySelectorAll('.gallery-grid img');
+                const container = document.getElementById('gallery-container');
+                for (let i = 0; i < 6 && i < imgs.length; i++) {
+                  const src = imgs[i].getAttribute('src');
+                  const alt = imgs[i].getAttribute('alt') || '';
+                  // 包成 <a> 並連到 highlight.html
+                  const a = document.createElement('a');
+                  a.href = 'highlight.html';
+                  a.tabIndex = 0;
+                  a.setAttribute('aria-label', '前往精選照片');
+                  const img = document.createElement('img');
+                  img.src = src;
+                  img.alt = alt;
+                  img.loading = 'lazy';
+                  img.style.cursor = 'pointer';
+                  a.appendChild(img);
+                  container.appendChild(a);
+                }
+              });
+            </script>
+        </main>
+
+        <!-- <main class="page-content-index">
+            <h2 class="page-title">各種照片</h2>
+            <div class="gallery-grid" id="gallery-container">
+                <a href="highlight.html" tabindex="0" aria-label="前往精選照片"><img src="images/notdataavailable.png" alt="無資料(預設)" loading="lazy" style="cursor:pointer;"></a>
+                <a href="highlight.html" tabindex="0" aria-label="前往精選照片"><img src="images/notdataavailable.png" alt="無資料(預設)" loading="lazy" style="cursor:pointer;"></a>
+                <a href="highlight.html" tabindex="0" aria-label="前往精選照片"><img src="images/notdataavailable.png" alt="無資料(預設)" loading="lazy" style="cursor:pointer;"></a>
+                <a href="highlight.html" tabindex="0" aria-label="前往精選照片"><img src="images/notdataavailable.png" alt="無資料(預設)" loading="lazy" style="cursor:pointer;"></a>
+                <a href="highlight.html" tabindex="0" aria-label="前往精選照片"><img src="images/notdataavailable.png" alt="無資料(預設)" loading="lazy" style="cursor:pointer;"></a>
+                <a href="highlight.html" tabindex="0" aria-label="前往精選照片"><img src="images/notdataavailable.png" alt="無資料(預設)" loading="lazy" style="cursor:pointer;"></a>
+                <a href="highlight.html" tabindex="0" aria-label="前往精選照片"><img src="images/notdataavailable.png" alt="無資料(預設)" loading="lazy" style="cursor:pointer;"></a>
+                <img src="images/notdataavailable.png" alt="無資料(預設)" class="lightbox-trigger" data-img-src="images/notdataavailable.png" data-title="尚無資料" data-description="<strong>　很抱歉，目前尚無照片<br></strong><B>[~想看其他內容點一下這裡~](https://www.instagram.com/bhwu0419.studio)</B>" loading="lazy">
+            </div>
+        </main> -->
+    </div> <!-- [修改] 內容包裝器結束 -->
+    
+    <!-- <div id="lightbox" class="lightbox-overlay">
+        <div class="lightbox-container">
+            <button id="lightbox-close" class="lightbox-close-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="lightbox-content">
+                <div class="lightbox-image-container">
+                    <img id="lightbox-image" src="" alt="放大的圖片">
+                </div>
+                <div class="lightbox-text-container">
+                    <h3 id="lightbox-title"></h3>
+                    <p id="lightbox-description"></p>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+    <footer>
+        <a href="callme.html" class="footerig" style="text-decoration:none;display:inline-flex;align-items:center;gap:0.3em;vertical-align:middle;">
+            <span class="material-symbols-outlined" id="footer-send-icon" style="font-size:1.2em;line-height:1;vertical-align:middle;display:inline-block;position:relative;top:0.04em;text-decoration:none !important;-webkit-text-decoration:none !important;text-decoration-thickness:0 !important;text-underline-offset:0 !important;border-bottom:none !important;box-shadow:none !important;transform:rotate(180deg);">send</span>聯絡資訊|點一下我<span class="material-symbols-outlined" id="footer-send-icon-reverse" style="font-size:1.2em;line-height:1;vertical-align:middle;display:inline-block;position:relative;top:0.04em;text-decoration:none !important;-webkit-text-decoration:none !important;text-decoration-thickness:0 !important;text-underline-offset:0 !important;border-bottom:none !important;box-shadow:none !important;">send</span>
+        </a><br>
+        © 2025吳秉乾的小小網站 | 由 Benson Wu 製作&emsp;&emsp;<br>
+        v2.1.0
+    </footer>
+
+    <!-- <script src="js/menu.js"></script> -->
+    <script src="js/components.js"></script>
+    <script src="js/lightbox.js"></script>
+</body>
+</html>

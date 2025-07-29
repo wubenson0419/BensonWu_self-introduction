@@ -1,0 +1,166 @@
+/*
+    --- nav.css ---
+    此 CSS 檔案專門為導覽列（Navigation Menu）及其相關元件定義樣式。
+    - 包含漢堡選單按鈕、側邊導覽列、遮罩層和多層次下拉選單的樣式和動畫。
+*/
+
+/* --- 1. 導覽列核心樣式 (Navigation Menu & Related Components) --- */
+
+/* 當菜單開啟時，防止網頁主體內容滾動。 */
+body.menu-active {
+    overflow: hidden; /* 隱藏 body 的滾動條。 */
+}
+
+/* #menu-toggle：漢堡選單按鈕的樣式。 */
+#menu-toggle {
+    position: fixed; /* 固定在視窗上，不隨滾動條移動。 */
+    top: 20px; /* 距離視窗頂部 20px。 */
+    left: 20px; /* 距離視窗左側 20px。 */
+    z-index: 1001; /* 確保按鈕在其他所有元素之上。 */
+    width: 40px; /* 寬度。 */
+    height: 40px; /* 高度。 */
+    background-color: #3C3C3C; /* 背景顏色。 */
+    border: 1px solid #FFFFFF; /* 邊框。 */
+    border-radius: 12px; /* 圓角。 */
+    color: #FFFFFF; /* 圖示顏色。 */
+    font-size: 20px; /* 圖示大小。 */
+    cursor: pointer; /* 將滑鼠游標變為手形，表示可點擊。 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 陰影效果。 */
+    transition: background-color 0.3s ease; /* 增加背景顏色轉換的平滑動畫。 */
+}
+
+/* #menu-toggle:hover：滑鼠懸停時的背景色。 */
+#menu-toggle:hover {
+    background-color: #4F4F4F;
+}
+
+/* #menu-icon：選單圖示的樣式。 */
+#menu-icon {
+    transition: transform 0.3s ease; /* 增加圖示旋轉的平滑動畫。 */
+}
+
+/* body.menu-active #menu-icon：當菜單開啟時，圖示旋轉 180 度。 */
+body.menu-active #menu-icon {
+    transform: rotate(180deg);
+}
+
+/* #main-nav：側邊導覽列的樣式。 */
+#main-nav {
+    position: fixed; /* 固定在視窗上。 */
+    top: 0; /* 距離視窗頂部 0。 */
+    left: 0; /* 距離視窗左側 0。 */
+    width: 350px; /* 設定導覽列寬度。 */
+    height: 100vh; /* 高度為視窗高度。 */
+    background: #1a1a1a; /* 背景顏色。 */
+    z-index: 1000; /* 確保導覽列在內容上方，但在按鈕下方。 */
+    transform: translateX(-100%); /* 預設將導覽列移出視窗左側（隱藏）。 */
+    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* 增加滑入/滑出的平滑動畫，使用自訂的 timing function 讓動畫更流暢。 */
+    padding: 80px 20px 20px; /* 內部邊距，為選單按鈕留出空間。 */
+}
+
+/* body.menu-active #main-nav：當菜單開啟時，將導覽列滑入視窗。 */
+body.menu-active #main-nav {
+    transform: translateX(0);
+}
+
+/* #main-nav ul：移除列表的預設樣式。 */
+#main-nav ul {
+    list-style: none;
+}
+
+/* #main-nav ul li：列表項目的間距。 */
+#main-nav ul li {
+    margin-bottom: 20px;
+}
+
+/* #main-nav a：導覽列連結的樣式。 */
+#main-nav a {
+    color: #FFFFFF; /* 文字顏色。 */
+    text-decoration: none; /* 移除文字底線。 */
+    font-size: 24px; /* 字體大小。 */
+    padding: 10px 15px; /* 內部邊距。 */
+    display: block; /* 讓連結佔滿整個寬度，方便點擊。 */
+    border-radius: 8px; /* 圓角。 */
+    transition: background-color 0.3s ease; /* 增加背景顏色轉換的動畫。 */
+    white-space: nowrap; /* 防止文字換行。 */
+    overflow: hidden; /* 隱藏超出容器的文字。 */
+    text-overflow: ellipsis; /* 當文字超出容器時顯示省略號。 */
+}
+
+/* #main-nav a:hover：滑鼠懸停時的背景色。 */
+#main-nav a:hover {
+    background-color: #3C3C3C;
+}
+
+/* #menu-overlay：半透明遮罩層的樣式。 */
+#menu-overlay {
+    position: fixed; /* 固定在視窗上。 */
+    top: 0;
+    left: 0;
+    width: 100%; /* 寬度填滿視窗。 */
+    height: 100%; /* 高度填滿視窗。 */
+    background-color: rgba(0, 0, 0, 0.6); /* 半透明的黑色背景。 */
+    z-index: 999; /* 在導覽列和按鈕之間。 */
+    opacity: 0; /* 預設透明，不可見。 */
+    pointer-events: none; /* 預設不接收滑鼠事件，讓使用者可以點擊下方的內容。 */
+    transition: opacity 0.5s ease; /* 增加透明度轉換的平滑動畫。 */
+}
+
+/* body.menu-active #menu-overlay：當菜單開啟時，讓遮罩層顯示並接收滑鼠事件。 */
+body.menu-active #menu-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- 2. 層級式子菜單樣式 (Tiered Submenu Styles) --- */
+
+/* .menu-item-has-children > a：擁有子選單的連結樣式。 */
+.menu-item-has-children > a {
+    position: relative; /* 相對定位，以便子元素可以絕對定位。 */
+}
+
+/* .dropdown-icon：下拉箭頭圖示的樣式。 */
+.dropdown-icon {
+    position: absolute; /* 絕對定位在連結內部。 */
+    right: 15px; /* 距離右側 15px。 */
+    top: 50%; /* 垂直置中。 */
+    transform: translateY(-50%); /* 修正垂直置中時的偏移。 */
+    font-size: 16px; /* 字體大小。 */
+    transition: transform 0.3s ease; /* 增加旋轉動畫。 */
+}
+
+/* .submenu：子選單容器的樣式。 */
+.submenu {
+    list-style: none; /* 移除列表符號。 */
+    display: none; /* 預設隱藏子選單。 */
+    padding-left: 20px; /* 增加縮排。 */
+    margin-top: 10px; /* 上方留出空間。 */
+}
+
+/* .submenu a：子選單連結的樣式。 */
+.submenu a {
+    font-size: 20px; /* 字體大小比主選單小。 */
+    color: #cccccc; /* 文字顏色比主選單淺。 */
+    padding-top: 8px; /* 內部邊距。 */
+    padding-bottom: 8px;
+}
+
+/* .submenu a:hover：滑鼠懸停時的文字顏色。 */
+.submenu a:hover {
+    color: #FFFFFF;
+}
+
+/* .menu-item-has-children.is-open > .submenu：當項目被「開啟」時，顯示子選單。 */
+.menu-item-has-children.is-open > .submenu {
+    display: block; /* 讓子選單顯示出來。 */
+}
+
+/* .menu-item-has-children.is-open > a > .dropdown-icon：當項目開啟時，讓箭頭圖示旋轉。 */
+.menu-item-has-children.is-open > a > .dropdown-icon {
+    transform: translateY(-50%) rotate(180deg); /* 旋轉 180 度，表示選單已展開。 */
+}
+
+/* .submenu .submenu：巢狀子選單的縮排。 */
+.submenu .submenu {
+    padding-left: 25px; /* 進一步增加縮排，以區分層級。 */
+}

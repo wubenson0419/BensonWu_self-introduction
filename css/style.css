@@ -1,0 +1,507 @@
+/*
+    --- style.css ---
+    此 CSS 檔案包含網站的所有樣式定義，從基礎設定到響應式設計。
+    - 統一管理網頁的外觀、排版、顏色和動畫效果。
+*/
+
+/* --- 1. 全域 & 基礎樣式 (Global & Base Styles) --- */
+
+/* 重設瀏覽器預設的內外邊距，並將盒模型設為 border-box。 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* [修改]：設定 HTML 元素高度 */
+html {
+    height: 100%;
+}
+
+/* 網頁主體的基礎樣式。 */
+body {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a); /* 漸層背景色。 */
+    color: #FFFFFF; /* 預設文字顏色。 */
+    font-family: sans-serif, "微軟正黑體"; /* 設定字體。 */
+    
+    /* [修改]：Sticky Footer 基礎設定 */
+    min-height: 100vh; /* 讓 body 最小高度為整個視窗的高度 */
+    display: flex;       /* 將 body 設為 Flex 容器 */
+    flex-direction: column; /* 讓其子元素（wrapper, footer）垂直排列 */
+}
+
+/* [新增] content-wrapper 樣式，讓它自動填滿剩餘空間 */
+.content-wrapper {
+    flex-grow: 1; /* 像彈簧一樣，佔據所有可用空間，把 footer 推下去 */
+    /* 移除 body 的 padding，改為在這裡和 footer 控制 */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* 頁面標頭的樣式。 */
+header {
+    text-align: center; /* 內容置中。 */
+    padding-top: 20px;
+    margin-bottom: 20px; /* 下方留出空間。 */
+}
+
+/* 頁面標題的樣式。 */
+header h1 {
+    font-size: 28px; /* 字體大小。 */
+    background-color: #3C3C3C; /* 背景色。 */
+    padding: 10px 20px; /* 內部邊距。 */
+    border-radius: 15px; /* 圓角。 */
+    display: inline-block; /* 讓背景只佔文字寬度。 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 陰影效果。 */
+}
+
+/* [保留] 你新增的 h5 樣式 */
+h5 {
+    text-align: center; /* 內容置中 */
+    font-size: clamp(0px, 20vw, 320px);
+    color: transparent;
+    margin-top: 20px; /* 上方留出空間 */
+    white-space: nowrap; 
+}
+
+/* 頁尾的樣式。 */
+footer {
+    text-align: center; /* 內容置中。 */
+    font-family: "Source Code Pro", monospace; /* 字體。 */
+    font-size: 14px; /* 字體大小。 */
+    color: #BBBBBB; /* 文字顏色。 */
+    flex-shrink: 0; /* 防止 footer 在空間不足時被壓縮 */
+    padding: 30px 20px 20px; /* 保持頁面底部有空間 */
+}
+
+/* --- 2. 首頁元件 (Homepage Components) --- */
+
+/* 首頁主要內容容器，使用 Flexbox 垂直排列。 */
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 個人資訊卡片的樣式。 */
+.profile-card {
+    background-color: #3C3C3C;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px; /* 下方留出空間。 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* 陰影效果。 */
+}
+
+/* 社交連結容器的樣式。 */
+.social-links-container {
+    margin-bottom: 25px;
+}
+
+/* 個人頭像圖片的樣式。 */
+.profile-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* 設為圓形。 */
+    object-fit: cover; /* 裁剪圖片以適應容器。 */
+    margin-bottom: 15px;
+    border: 3px solid #FFFFFF; /* 邊框。 */
+    display: block;
+    margin-left: auto;
+    margin-right: auto; /* 水平置中。 */
+}
+
+/* 個人簡介文字的樣式。 */
+.profile-info p {
+    font-size: 18px;
+    line-height: 1.6; /* 行高。 */
+    text-align: left;
+}
+
+/* 各區塊標題的樣式。 */
+.section-title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* 社交連結按鈕的 Grid 排版。 */
+.social-links {
+    display: grid;
+    grid-template-columns: 1fr; /* 預設為單欄排版。 */
+    gap: 15px; /* 項目間距。 */
+}
+
+/* 每個社交連結按鈕的樣式。 */
+.social-links a {
+    position: relative;
+    overflow: hidden; /* 隱藏超出邊界的內容，用於懸停動畫。 */
+    z-index: 1; /* 確保按鈕在偽元素之上。 */
+    display: flex; /* 使用 Flexbox 垂直置中圖示和文字。 */
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #4F4F4F;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background-color 0.5s ease; /* 增加背景色轉換的平滑動畫。 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    border: 0.5px solid #FFFFFF;
+}
+
+/* 按鈕中圖示的間距。 */
+.social-links a i {
+    margin-right: 15px;
+}
+
+/* 針對 Instagram 按鈕的懸停漸層效果。 */
+.instagram::before {
+    content: '';
+    position: absolute; /* 絕對定位，覆蓋整個按鈕。 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4); /* Instagram 漸層色。 */
+    opacity: 0; /* 預設透明，不可見。 */
+    transition: opacity 0.5s ease; /* 增加透明度轉換的平滑動畫。 */
+    z-index: -1; /* 放在按鈕內容的下方。 */
+}
+
+/* 針對 Gmail 按鈕的懸停漸層效果，原理同 Instagram */
+.gmail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*background: linear-gradient(45deg, #4285F4 25%, #DB4437 25% 50%, #F4B400 50% 75%, #0F9D58 75%);/*45度*/
+    /*background: linear-gradient(to bottom, #4285F4 25%, #DB4437 25% 50%, #F4B400 50% 75%, #0F9D58 75%);/*橫條*/
+    background: linear-gradient(45deg,#DB4437 25%,  #F4B400 50%, #0F9D58 75%,#4285F4 100%); /* Gmail 漸層色。 */
+    opacity: 0; /* 預設透明，不可見。 */
+    transition: opacity 0.5s ease;
+    z-index: -1; /* 放在按鈕內容的下方。 */
+}
+
+/* 各個社交連結按鈕懸停時的背景色效果。 */
+.facebook:hover { background-color: #1877F2; }
+.instagram:hover::before { opacity: 1; } /* 懸停時，讓漸層背景顯示。 */
+.threads:hover { background-color: #000000; }
+.line:hover { background-color: #00C300; }
+.youtube:hover { background-color: #c4302b; }
+.github:hover { background-color: #24292e; }
+.gmail:hover::before { opacity: 1; }
+
+/* --- 3. 其他頁面內容通用樣式 (Other Page Content Styles) --- */
+
+/* 其他頁面主內容的卡片式容器。 */
+.page-content {
+    max-width: 900px;
+    margin: 40px auto; /* 垂直居中，並在左右留出空間。 */
+    padding: 30px;
+    background-color: #3C3C3C;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+
+.page-content-index {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #3C3C3C;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 1023px) {
+  .page-content-index {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+/* 頁面標題的樣式。 */
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 26px;
+}
+
+/* 作品集和圖片畫廊的 Grid 排版。 */
+.portfolio-grid, .gallery-grid {
+    display: grid;
+    gap: 30px;
+}
+
+/* 作品集網格：自適應欄位，每欄最小寬度 300px。 */
+.portfolio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* 圖片畫廊網格：自適應欄位，每欄最小寬度 250px。 */
+.gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* @media (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  .page-content-index {
+    padding: 10px;
+  }
+} */
+
+@media (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        /* 螢幕寬度小於 768px 時，每列顯示 2 個項目 */
+    }
+}
+
+/* 針對中等螢幕 (平板) */
+/* @media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);  */
+        /* 螢幕寬度在 768px 到 1023px 之間，每列顯示 4 個項目 */
+    /* }
+} */
+
+/* 針對大螢幕 (桌機) */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(6, 1fr); 
+        /* 螢幕寬度大於或等於 1024px 時，每列顯示 6 個項目 */
+    }
+}
+
+/* 作品集單個項目的樣式。 */
+.portfolio-item {
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    overflow: hidden;
+    padding: 20px;
+    text-align: left;
+}
+
+/* 作品集和畫廊圖片的樣式。 */
+.portfolio-item img, .gallery-grid img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* 圖片畫廊圖片的樣式和懸停動畫。 */
+.gallery-grid img {
+    height: 100%;
+    max-height: 400px; /* 限制圖片高度，保持一致性。 */
+    max-width: 300px; /* 限制圖片寬度，保持一致性。 */
+    object-fit: cover;
+    transition: transform 0.3s ease; /* 增加放大動畫。 */
+    cursor: pointer; /* 將滑鼠游標變為手形，表示可點擊。 */
+}
+.gallery-grid img:hover {
+    transform: scale(1.05); /* 懸停時放大。 */
+}
+
+/* 連結按鈕的樣式。 */
+.btn-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4F4F4F;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s; /* 增加背景色轉換動畫。 */
+}
+.btn-link:hover {
+    background-color: #515BD4;
+}
+
+/* 聯絡表單的樣式。 */
+.contact-intro { text-align: center; margin-bottom: 30px; }
+.contact-form { max-width: 600px; margin: 0 auto; }
+.form-group { margin-bottom: 20px; }
+.contact-form label { display: block; margin-bottom: 8px; }
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #555;
+    background-color: #2a2a2a;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4F4F4F;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.contact-form button:hover {
+    background-color: #00C300;
+}
+
+.footerig {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #BBBBBB;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    vertical-align: middle;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+/* #footer-send-icon{
+
+} */
+/* .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+} */
+/*
+ * ----------------------------------------
+ * 4. 無障礙設計 - 焦點指示器優化 (更新版)
+ * ----------------------------------------
+ * 確保所有可互動的元素都有清晰可見的焦點指示器。
+ */
+
+/* 針對所有常見的可互動元素，使其在被鍵盤選中時擁有統一的樣式 */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus,
+.menu-toggle:focus,
+.lightbox-close-btn:focus,
+.lightbox-trigger:focus {
+    /* 移除瀏覽器預設的外框 */
+    outline: none; 
+
+    /* 透過 box-shadow 創建一個清晰可見的焦點環 */
+    box-shadow: 0 0 0 1px #BBBBBB, 0 0 0 2px #fff; 
+
+    /* 添加過渡效果，讓焦點效果更平滑 */
+    transition: box-shadow 0.2s ease-in-out;
+    
+    /* 讓焦點環的圓角與元素本身保持一致 */
+    border-radius: 4px;
+}
+
+
+
+
+/* --- 4. 媒體查詢：響應式設計 (Media Queries: Responsive Design) --- */
+
+/* 當螢幕寬度大於或等於 1024px 時，套用以下樣式。 */
+@media (min-width: 1024px) {
+    /* 將首頁內容改為水平 Flexbox 佈局。 */
+    .main-content {
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 1000px;
+        margin: 0 auto;
+        gap: 4%;
+        align-items: stretch; /* 讓兩個區塊等高。 */
+    }
+
+    /* 個人資訊和社交連結容器的寬度。 */
+    .profile-card, .social-links-container {
+        flex-basis: 50%; /* 讓它們各佔約一半的寬度。 */
+        margin-bottom: 0;
+    }
+
+    /* 在寬螢幕上，社交連結容器有背景和陰影。 */
+    .social-links-container {
+        background-color: #3C3C3C;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    /* 將社交連結按鈕改為 Flexbox 垂直排列。 */
+    .social-links {
+        flex-grow: 1; /* 佔據所有可用空間。 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* 垂直置中。 */
+    }
+
+
+/* --- 5. 圖片網格排版 (Image Gallery Grid) --- */
+
+/*
+圖片畫廊的網格容器。使用 CSS Grid 實現固定排版。
+.gallery-grid {
+    display: grid;
+    創建響應式網格：每列最小寬度為 250px，自動填滿可用空間
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px; 網格項目之間的間距
+}
+
+確保每個圖片項目在網格中有固定的尺寸
+.gallery-item {
+    讓項目高度根據其寬度自適應，保持正方形或固定比例
+    aspect-ratio: 2 / 3;
+    overflow: hidden; 隱藏超出容器的部分
+    border-radius: 8px; 添加圓角，讓圖片看起來更柔和
+}
+
+圖片本身的樣式，確保它們填滿各自的容器
+.gallery-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 裁剪圖片以填滿容器，保持比例不變
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+點擊「無資料」圖片時的樣式
+.no-data-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 確保圖片完整顯示在容器內，不會被裁剪
+    /* padding: 20%; 增加一些內邊距，讓圖片看起來置中 */
+}
+
+/* --- 5. 圖片網格排版 (Image Gallery Grid) ---
+
+圖片畫廊的網格容器，使用 CSS Grid 實現固定列數排版。
+.gallery-grid {
+    display: grid;
+    gap: 15px; 網格項目之間的間距
+}
+
+針對小螢幕 (手機)
+@media (max-width: 767px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); 螢幕寬度小於 768px 時，每列顯示 2 個項目
+    }
+}
+
+針對中等螢幕 (平板)
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr); 螢幕寬度在 768px 到 1023px 之間，每列顯示 4 個項目
+    }
+}
+
+針對大螢幕 (桌機)
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(6, 1fr); 螢幕寬度大於或等於 1024px 時，每列顯示 6 個項目
+    }
+} */

@@ -1,0 +1,147 @@
+/* --- lightbox.css --- */
+
+/* 1. 燈箱核心樣式 */
+body.lightbox-active { overflow: hidden; }
+
+.lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 2000;
+    display: flex; justify-content: center; align-items: center;
+    padding: 20px;
+    visibility: hidden; opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s 0.3s;
+}
+
+.lightbox-overlay.active { visibility: visible; opacity: 1; transition-delay: 0s; }
+
+.lightbox-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    /* 移除固定高度和最大高度，讓其根據內容自動調整 */
+    /* height: 80%; */
+    /* max-height: 80vh; */
+    min-height: 200px; /* 添加一個最小高度，防止內容過少時框太小 */
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 30px;
+    display: flex;
+    flex-direction: column; /* 確保內部項目是垂直排列以便於內容流動 */
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s ease 0.1s, opacity 0.3s ease 0.1s;
+    box-sizing: border-box; /* 確保 padding 不會增加總寬高 */
+}
+
+.lightbox-overlay.active .lightbox-container { transform: translateY(0); opacity: 1; }
+
+.lightbox-close-btn {
+    position: absolute; top: 10px; right: 20px;
+    background: none; border: none; color: #fff;
+    font-size: 40px; font-weight: bold; cursor: pointer;
+    z-index: 10;
+}
+
+.lightbox-content {
+    position: relative;
+    display: flex;
+    width: 100%;
+    /* 移除 height: 100%; 讓它根據內容自動調整 */
+    /* height: 100%; */
+    align-items: center;
+    flex-grow: 1; /* 讓內容部分在容器中盡可能佔據空間 */
+}
+
+.lightbox-content::before {
+    content: ''; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px; height: 90%;
+    background-color: #4f4f4f;
+}
+
+.lightbox-image-container {
+    flex-basis: 50%; padding-right: 30px;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* [關鍵修正] 文字容器本身只負責佈局，不再設定文字對齊 */
+.lightbox-text-container {
+    flex-basis: 50%;
+    padding-left: 30px;
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* 我們把 text-align: center 從這裡移除，交給子元素自己決定 */
+}
+
+/* 2. 圖片與文字樣式 */
+#lightbox-image {
+    max-width: 100%; max-height: calc(80vh - 60px); /* 保持圖片最大高度的限制 */
+    object-fit: contain; border-radius: 10px;
+}
+
+/* [關鍵修正] 標題文字置中 */
+#lightbox-title {
+    font-size: 35px;
+    margin-bottom: 25px;
+    text-align: center; /* 標題自己負責置中 */
+}
+
+/* [關鍵修正] 描述文字靠左，但作為一個區塊被父層置中 */
+#lightbox-description {
+    font-size: 20px;
+    line-height: 2.0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    text-align: left; /* 描述內部的文字一律靠左，才能對齊 */
+    display: inline-block; /* 讓 P 標籤的寬度「收縮至內容大小」 */
+    align-self: center;  /* 讓這個「收縮後的區塊」在 Flex 容器中置中 */
+}
+
+#lightbox-description strong { color: #FFFFFF; margin-right: 8px; }
+#lightbox-description em { color: #bbbbbb; font-style: italic; }
+
+/* 台中車站那篇控制內文字體大小 */
+.lightbox-desc-paragraph {
+    font-size: 0.92em;
+    line-height: 1.7;
+    color: #f1f1f1;
+    margin-bottom: 1.2em;
+    text-align: left;
+    opacity: 0.95;
+}
+
+/* 3. 媒體查詢 */
+@media (max-width: 1024px) {
+    .lightbox-container {
+        width: 100%;
+        /* 移除固定高度和最大高度，讓它自動根據內容高度調整 */
+        /* height: 100%; */
+        /* max-height: 95vh; */
+        min-height: auto; /* 在手機上可以不用最小高度，讓它完全自適應 */
+        padding: 15px;
+        overflow-y: auto; /* 保留滾動條，因為內容可能還是很長 */
+        box-sizing: border-box;
+    }
+    .lightbox-content { flex-direction: column; height: auto; gap: 15px; }
+    .lightbox-content::before { display: none; }
+    .lightbox-image-container, .lightbox-text-container { flex-basis: auto; padding: 0; }
+    .lightbox-image-container { max-height: 50vh; }
+    #lightbox-image { max-height: 50vh; }
+    .lightbox-text-container { text-align: left; }
+    /* 在手機上，讓標題也靠左對齊 */
+    #lightbox-title { font-size: 20px; margin-bottom: 10px; text-align: left; }
+    #lightbox-description {
+        font-size: 15px; line-height: 1.6;
+        display: block; /* 恢復成正常的區塊元素 */
+        align-self: initial; /* 恢復預設對齊 */
+    }
+    .lightbox-close-btn { top: 5px; right: 10px; }
+}
+
+/* 4. 觸發器樣式 */
+.lightbox-trigger { cursor: pointer; transition: transform 0.3s ease, filter 0.3s ease; }
+.lightbox-trigger:hover { transform: scale(1.05); filter: brightness(1.2); }
