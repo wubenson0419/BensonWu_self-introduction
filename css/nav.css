@@ -13,25 +13,54 @@ body.menu-active {
 
 /* #menu-toggle：漢堡選單按鈕的樣式。 */
 #menu-toggle {
-    position: fixed; /* 固定在視窗上，不隨滾動條移動。 */
-    top: 20px; /* 距離視窗頂部 20px。 */
-    left: 20px; /* 距離視窗左側 20px。 */
-    z-index: 1001; /* 確保按鈕在其他所有元素之上。 */
-    width: 40px; /* 寬度。 */
-    height: 40px; /* 高度。 */
-    background-color: #3C3C3C; /* 背景顏色。 */
-    border: 1px solid #FFFFFF; /* 邊框。 */
-    border-radius: 12px; /* 圓角。 */
-    color: #FFFFFF; /* 圖示顏色。 */
-    font-size: 20px; /* 圖示大小。 */
-    cursor: pointer; /* 將滑鼠游標變為手形，表示可點擊。 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* 陰影效果。 */
-    transition: background-color 0.3s ease; /* 增加背景顏色轉換的平滑動畫。 */
+    color: #fff; /* 圖示顏色 */
+    font-size: 25px; /* 圖示大小 */
+    position: fixed; /* 固定在視窗上 */
+    top: 25px;
+    left: 25px;
+    z-index: 1001;
+    width: 50px;
+    height: 50px;
+    border-radius: 45%; /* 圓形玻璃 */
+    background: radial-gradient(ellipse at 60% 35%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.005) 100%); /* 更通透的液態玻璃漸層 */
+    border: 0.01px solid rgba(255, 255, 255, 0.296); /* 0.1px 膽外框 */
+    /* 柔和陰影，模擬玻璃厚度與折射 */
+    box-shadow:
+        0 5px 8px 0 rgba(31,38,135,0.08), /* 下方柔和陰影 */
+        0 20px 32px 0 rgba(31,38,135,0.10), /* 整體立體感 */
+        0 0 16px 10px rgba(255,255,255,0.07) inset; /* 內部高光*/
+    /* 變形效果：使用 filter: blur() 與 backdrop-filter: contrast()、saturate()、brightness() 增強內部畫面變形感 */
+    backdrop-filter: blur(5px) contrast(1.5) brightness(1.25) saturate(1.12) url(#menu-glass-distort);
+    -webkit-backdrop-filter: blur(5px) contrast(1.5) brightness(1.25) saturate(1.12) url(#menu-glass-distort);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    outline: 0;
+    transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.3s, background 0.3s;
+    overflow: visible;
+    justify-content: center;
 }
 
-/* #menu-toggle:hover：滑鼠懸停時的背景色。 */
+/* SVG 濾鏡：液態玻璃內部變形效果 */
+#menu-glass-distort {
+    filter: url(#menu-glass-distort);
+}
+
+/* #menu-toggle::before, #menu-toggle::after：增加高光效果。 */
+#menu-toggle::before,
+#menu-toggle::after {
+    display: none !important;
+}
+
+/* #menu-toggle:hover：滑鼠懸停時的陰影與縮放效果。 */
 #menu-toggle:hover {
-    background-color: #4F4F4F;
+    /* 懸停時加強立體感與放大 */
+    box-shadow:
+        0 4px 16px 0 rgba(31,38,135,0.10),
+        0 16px 48px 0 rgba(31,38,135,0.13),
+        0 0 24px 4px rgba(255,255,255,0.10) inset;
+    transform: scale(1.08); /* 輕微放大 */
+    background: radial-gradient(ellipse at 60% 35%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.06) 40%, rgba(255,255,255,0.02) 100%);
 }
 
 /* #menu-icon：選單圖示的樣式。 */
@@ -41,7 +70,7 @@ body.menu-active {
 
 /* body.menu-active #menu-icon：當菜單開啟時，圖示旋轉 180 度。 */
 body.menu-active #menu-icon {
-    transform: rotate(180deg);
+    transform: rotate(270deg);
 }
 
 /* #main-nav：側邊導覽列的樣式。 */
@@ -49,12 +78,18 @@ body.menu-active #menu-icon {
     position: fixed; /* 固定在視窗上。 */
     top: 0; /* 距離視窗頂部 0。 */
     left: 0; /* 距離視窗左側 0。 */
-    width: 350px; /* 設定導覽列寬度。 */
+    width: 250px; /* 設定導覽列寬度。 */
     height: 100vh; /* 高度為視窗高度。 */
-    background: #1a1a1a; /* 背景顏色。 */
+    background: radial-gradient(ellipse at 60% 35%, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 40%, rgba(255,255,255,0.01) 100%);
+    border-right: 0.5px solid rgba(255,255,255,0.18); /* 玻璃質感邊框 */
+    box-shadow:
+        0 10px 40px 0 rgba(31,38,135,0.10), /* 立體感陰影 */
+        0 1.5px 8px 0 rgba(255,255,255,0.08) inset; /* 內部高光 */
+    backdrop-filter: blur(5px) contrast(1.25) brightness(1.12) saturate(1.18); /* 玻璃質感 */
+    -webkit-backdrop-filter: blur(8px) contrast(1.25) brightness(1.12) saturate(1.18);
     z-index: 1000; /* 確保導覽列在內容上方，但在按鈕下方。 */
     transform: translateX(-100%); /* 預設將導覽列移出視窗左側（隱藏）。 */
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* 增加滑入/滑出的平滑動畫，使用自訂的 timing function 讓動畫更流暢。 */
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* 增加滑入/滑出的平滑動畫，使用自訂的 timing function 讓動畫更流暢。 */
     padding: 80px 20px 20px; /* 內部邊距，為選單按鈕留出空間。 */
 }
 
@@ -78,10 +113,18 @@ body.menu-active #main-nav {
     color: #FFFFFF; /* 文字顏色。 */
     text-decoration: none; /* 移除文字底線。 */
     font-size: 24px; /* 字體大小。 */
+    text-align:center;
     padding: 10px 15px; /* 內部邊距。 */
     display: block; /* 讓連結佔滿整個寬度，方便點擊。 */
-    border-radius: 8px; /* 圓角。 */
-    transition: background-color 0.3s ease; /* 增加背景顏色轉換的動畫。 */
+    border-radius: 23px; /* 更圓潤的玻璃角。 */
+    background: radial-gradient(ellipse at 60% 35%, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.07) 40%, rgba(255,255,255,0.03) 100%);
+    border: 0.5px solid rgba(255,255,255,0.18); /* 玻璃質感細邊框 */
+    box-shadow:
+        0 2px 8px 0 rgba(31,38,135,0.08), /* 下方柔和陰影 */
+        0 0.5px 4px 0 rgba(255,255,255,0.10) inset; /* 內部高光 */
+    backdrop-filter: blur(3px) contrast(1.18) brightness(1.10) saturate(1.10); /* 玻璃質感 */
+    -webkit-backdrop-filter: blur(3px) contrast(1.18) brightness(1.10) saturate(1.10);
+    transition: background 0.3s, box-shadow 0.3s, border 0.3s;
     white-space: nowrap; /* 防止文字換行。 */
     overflow: hidden; /* 隱藏超出容器的文字。 */
     text-overflow: ellipsis; /* 當文字超出容器時顯示省略號。 */
@@ -89,7 +132,12 @@ body.menu-active #main-nav {
 
 /* #main-nav a:hover：滑鼠懸停時的背景色。 */
 #main-nav a:hover {
-    background-color: #3C3C3C;
+    background: radial-gradient(ellipse at 60% 35%, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.10) 40%, rgba(255,255,255,0.05) 100%);
+    box-shadow:
+        0 4px 16px 0 rgba(31,38,135,0.13),
+        0 0 12px 2px rgba(255,255,255,0.13) inset;
+    border: 0.5px solid rgba(255,255,255,0.25);
+    transform: scale(1.02); /* 輕微放大 */
 }
 
 /* #menu-overlay：半透明遮罩層的樣式。 */

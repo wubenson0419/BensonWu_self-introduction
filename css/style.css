@@ -1,3 +1,12 @@
+/* --- 全域隱藏捲動軸（Scrollbar）--- */
+html, body {
+    /* 仍可滾動，但不顯示捲動軸 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+}
 /*
     --- style.css ---
     此 CSS 檔案包含網站的所有樣式定義，從基礎設定到響應式設計。
@@ -143,9 +152,10 @@ footer {
     background-color: #4F4F4F;
     border-radius: 12px;
     text-decoration: none;
-    transition: background-color 0.5s ease; /* 增加背景色轉換的平滑動畫。 */
+    transition: background-color 0.5s, box-shadow 0.3s, border 0.3s, color 0.3s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     border: 0.5px solid #FFFFFF;
+    /* 移除玻璃質感相關屬性 */
 }
 
 /* 按鈕中圖示的間距。 */
@@ -310,11 +320,14 @@ footer {
 .btn-link {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4F4F4F;
     color: #fff;
     text-decoration: none;
     border-radius: 8px;
-    transition: background-color 0.3s; /* 增加背景色轉換動畫。 */
+    background-color: #4F4F4F;
+    border: none;
+    box-shadow: none;
+    transition: background-color 0.3s;
+    /* 移除玻璃質感相關屬性 */
 }
 .btn-link:hover {
     background-color: #515BD4;
