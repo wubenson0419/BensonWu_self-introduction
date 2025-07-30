@@ -123,20 +123,31 @@
             <h2 class="page-title">精選照片</h2>
             <div class="gallery-grid" id="gallery-container"></div>
             <script>
-            // 自動載入 highlight.html 的 6 張圖片到首頁
+            // 從 highlight.html 隨機載入 6 張圖片到首頁
             fetch('highlight.html')
               .then(res => res.text())
               .then(html => {
                 const temp = document.createElement('div');
                 temp.innerHTML = html;
-                const imgs = temp.querySelectorAll('.gallery-grid img');
+                const imgs = Array.from(temp.querySelectorAll('.gallery-grid img'));
                 const container = document.getElementById('gallery-container');
-                for (let i = 0; i < 6 && i < imgs.length; i++) {
-                  const src = imgs[i].getAttribute('src');
-                  const alt = imgs[i].getAttribute('alt') || '';
-                  // 包成 <a> 並連到 highlight.html
+                
+                // 打亂圖片陣列順序
+                for (let i = imgs.length - 1; i > 0; i--) {
+                  const j = Math.floor(Math.random() * (i + 1));
+                  [imgs[i], imgs[j]] = [imgs[j], imgs[i]];
+                }
+                
+                // 選取前 6 張圖片顯示
+                imgs.slice(0, 6).forEach((originalImg, index) => {
+                  const src = originalImg.getAttribute('src');
+                  const alt = originalImg.getAttribute('alt') || '';
+                  const title = originalImg.getAttribute('data-title') || '';
+                  const description = originalImg.getAttribute('data-description') || '';
+                  
+                  // 包成 <a> 並連到 highlight.html，帶上圖片資訊
                   const a = document.createElement('a');
-                  a.href = 'highlight.html';
+                  a.href = `highlight.html?img=${encodeURIComponent(src)}&title=${encodeURIComponent(title)}&desc=${encodeURIComponent(description)}`;
                   a.tabIndex = 0;
                   a.setAttribute('aria-label', '前往精選照片');
                   const img = document.createElement('img');
@@ -144,9 +155,19 @@
                   img.alt = alt;
                   img.loading = 'lazy';
                   img.style.cursor = 'pointer';
+                  
+                  // 使用 fade-in 動畫效果
+                  img.style.opacity = '0';
+                  img.style.transition = 'opacity 0.5s ease-in';
+                  
                   a.appendChild(img);
                   container.appendChild(a);
-                }
+                  
+                  // 確保圖片載入後再顯示
+                  img.onload = () => {
+                    img.style.opacity = '1';
+                  };
+                });
               });
             </script>
         </main>
