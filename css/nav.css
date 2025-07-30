@@ -22,7 +22,7 @@ body.menu-active {
     width: 50px;
     height: 50px;
     border-radius: 45%; /* 圓形玻璃 */
-    background: radial-gradient(ellipse at 60% 35%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.005) 100%); /* 更通透的液態玻璃漸層 */
+    background: rgba(255,255,255,0.13); /* 明顯透明度，確保玻璃模糊在 iOS Safari 可見 */
     border: 0.01px solid rgba(255, 255, 255, 0.296); /* 0.1px 膽外框 */
     /* 柔和陰影，模擬玻璃厚度與折射 */
     box-shadow:
@@ -30,8 +30,8 @@ body.menu-active {
         0 20px 32px 0 rgba(31,38,135,0.10), /* 整體立體感 */
         0 0 16px 10px rgba(255,255,255,0.07) inset; /* 內部高光*/
     /* 變形效果：使用 filter: blur() 與 backdrop-filter: contrast()、saturate()、brightness() 增強內部畫面變形感 */
-    backdrop-filter: blur(5px) contrast(1.5) brightness(1.25) saturate(1.12) url(#menu-glass-distort);
-    -webkit-backdrop-filter: blur(5px) contrast(1.5) brightness(1.25) saturate(1.12) url(#menu-glass-distort);
+    backdrop-filter: blur(5px) contrast(1.5) brightness(1.5) saturate(1.12);
+    -webkit-backdrop-filter: blur(5px) contrast(1.5) brightness(1.5) saturate(1.12);
     display: grid;
     place-items: center;
     cursor: pointer;
