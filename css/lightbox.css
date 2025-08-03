@@ -62,14 +62,15 @@ body.lightbox-active { overflow: hidden; }
 }
 
 .lightbox-image-container {
-    flex-basis: 50%; padding-right: 30px;
+    padding-right: 0;
+    flex-basis: 48%;
     display: flex; justify-content: center; align-items: center;
 }
 
 /* [關鍵修正] 文字容器本身只負責佈局，不再設定文字對齊 */
 .lightbox-text-container {
-    flex-basis: 50%;
-    padding-left: 30px;
+    flex-basis: 51%;
+    padding-left: 40px;
     color: #f1f1f1;
     display: flex;
     flex-direction: column;
@@ -79,7 +80,7 @@ body.lightbox-active { overflow: hidden; }
 
 /* 2. 圖片與文字樣式 */
 #lightbox-image {
-    max-width: 100%; max-height: calc(80vh - 60px); /* 保持圖片最大高度的限制 */
+    max-width: 110%; max-height: 85vh; /* 保持圖片最大高度的限制 max-height: calc(80vh - 50px);*/
     object-fit: contain; border-radius: 10px;
 }
 

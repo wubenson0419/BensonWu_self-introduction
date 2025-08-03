@@ -122,8 +122,8 @@ body.menu-active #main-nav {
     box-shadow:
         0 2px 8px 0 rgba(31,38,135,0.08), /* 下方柔和陰影 */
         0 0.5px 4px 0 rgba(255,255,255,0.10) inset; /* 內部高光 */
-    backdrop-filter: blur(3px) contrast(1.18) brightness(1.10) saturate(1.10); /* 玻璃質感 */
-    -webkit-backdrop-filter: blur(3px) contrast(1.18) brightness(1.10) saturate(1.10);
+    backdrop-filter: blur(50px) contrast(1.18) brightness(1.10) saturate(1.10); /* 玻璃質感 */
+    -webkit-backdrop-filter: blur(50px) contrast(1.18) brightness(1.10) saturate(1.10);
     transition: background 0.3s, box-shadow 0.3s, border 0.3s;
     white-space: nowrap; /* 防止文字換行。 */
     overflow: hidden; /* 隱藏超出容器的文字。 */
